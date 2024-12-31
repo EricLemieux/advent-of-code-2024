@@ -1,5 +1,3 @@
-import com.lemieuxdev.adventofcode2024.day1.day1_part1
-import com.lemieuxdev.adventofcode2024.day1.day1_part2
 import kotlin.test.Test
 import kotlin.test.fail
 

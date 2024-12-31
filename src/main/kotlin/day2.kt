@@ -1,5 +1,3 @@
-package com.lemieuxdev.adventofcode2024.day1
-
 import kotlin.math.abs
 
 fun day2_part1(input: String): Int {

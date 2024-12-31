@@ -1,5 +1,3 @@
-import com.lemieuxdev.adventofcode2024.day1.day3_part1
-import com.lemieuxdev.adventofcode2024.day1.day3_part2
 import kotlin.test.Test
 
 class Day3KtTest {
