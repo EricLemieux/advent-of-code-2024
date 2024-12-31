@@ -1,4 +1,5 @@
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class Day4KtTest {
   @Test
@@ -18,14 +19,14 @@ class Day4KtTest {
         """
             .trimIndent()
     val result = day4_part1(input)
-    assert(result == 18) { "Expected 18 but got $result" }
+    assertEquals(18, result)
   }
 
   @Test
   fun `part 1`() {
     val input = object {}.javaClass.getResource("day-4-part-1.txt")?.readText().toString()
     val result = day4_part1(input)
-    assert(result == -1) { "Expected ___ but got $result" }
+    assertEquals(2336, result)
   }
 
   @Test
