@@ -10,20 +10,18 @@ fun day3_part1(input: String): Int {
 }
 
 fun day3_part2(input: String): Int {
-  var enabled = true
-  var sum = 0
-  val r = Regex("""(mul\((\d+),(\d+)\)|do\(\)|don't\(\))""")
-  r.findAll(input).forEach {
-    val methodName = Regex("""(.*)\(""").find(it.value)?.groups[1]?.value ?: ""
-    when (methodName) {
-      "do" -> enabled = true
-      "don't" -> enabled = false
-      "mul" -> {
-        if (enabled) {
-          sum += (it.groups[2]?.value?.toInt() ?: 0) * (it.groups[3]?.value?.toInt() ?: 0)
-        }
+  val r = Regex("""(?<command>mul|do|don't)\((?<content>[,0-9]*)\)""")
+  return r.findAll(input).fold(Pair(0, true)) { (value, enabled), match ->
+     when (match.groups["command"]?.value) {
+      "do" -> Pair(value, true)
+      "don't" -> Pair(value, false)
+      "mul" if enabled -> {
+        val content = match.groups["content"]?.value?.split(",")
+        val one = content?.getOrNull(0)?.toInt() ?: 0
+        val two = content?.getOrNull(1)?.toInt() ?: 0
+        Pair(value + (one*two), enabled)
       }
+      else -> Pair(value, enabled)
     }
-  }
-  return sum
+  }.first
 }

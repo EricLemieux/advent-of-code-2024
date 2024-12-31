@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.0.21"
+    kotlin("jvm") version "2.1.0"
     id("com.diffplug.spotless") version "6.25.0"
 }
 
@@ -19,6 +19,9 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(21)
+    compilerOptions {
+        freeCompilerArgs.add("-Xwhen-guards")
+    }
 }
 
 spotless {
