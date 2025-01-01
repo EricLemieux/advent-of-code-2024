@@ -12,7 +12,6 @@ fun day4_part1(input: String): Int {
         for (k in -1..1) {
           for (l in -1..1) {
             if (chars.containsTarget(i, j, targetWord, k, l)) {
-              println("$i $j $c")
               count++
             }
           }
@@ -53,5 +52,25 @@ fun List<List<Char>>.containsTarget(
 }
 
 fun day4_part2(input: String): Int {
-  return 0
+  val chars: List<List<Char>> = input.lines().map { line -> line.toCharArray().toList() }
+
+  var count = 0
+
+  for (i in 1..chars.lastIndex - 1) {
+    for (j in 1..chars[i].lastIndex - 1) {
+      val c = chars[i][j]
+      if (c == 'A') {
+        val downRight = chars[i - 1][j - 1] == 'M' && chars[i + 1][j + 1] == 'S'
+        val downLeft = chars[i - 1][j + 1] == 'M' && chars[i + 1][j - 1] == 'S'
+        val upRight = chars[i + 1][j - 1] == 'M' && chars[i - 1][j + 1] == 'S'
+        val upLeft = chars[i + 1][j + 1] == 'M' && chars[i - 1][j - 1] == 'S'
+
+        if ((downRight || upLeft) && (downLeft || upRight)) {
+          count++
+        }
+      }
+    }
+  }
+
+  return count
 }
